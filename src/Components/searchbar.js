@@ -1,99 +1,48 @@
-import React, { Component } from 'react';
-import Axios from 'axios';
+import React from 'react';
+// import Axios from 'axios';
 
-class SearchBar extends Component {
+class SearchBar extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = { 
-            CityNames: [],
-            suggestions: [],
-            text: '',
-            locationData: [],
-        };
-        this.handleInputChange = this.handleInputChange.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = { searchText: '' };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    //this.handleKeyPressed = this.handleKeyPressed.bind(this);
+  }
 
-    handleInputChange(event){
-        this.setState({
-            searchText: event.target.value,
-        });
+  // handleInputChange = (event) => {
 
-    componentWillMount = () => {
-        Axios.get('https://api.openaq.org/v1/locations', {
-            params: {
-                country: 'GB',
-                limit: 10000,
-            },
-        })
-        .then((response) => {
-            const cityLocation = response.data.results.map((city) => {
-                return city.location;
-            })
+  // };
 
-        this.setState({
-            Cities: response.data.results,
-            CityNames: cityLocation,
-        });
-       });
-    };
+  handleInputChange(event){
+    this.setState({
+      searchText: event.target.value,
+    });
+  }
 
-    onTextChanged = (event) => {
-        const value = event.target.value;
-        let suggestions = [];
-        if (value.length > 0) {
-            const regex = new RegExp(`^${value}`, 'i');
-            suggestions = this.state.CityNames.sort().filter(value => regex.test(value));
-        }
-        this.setState({
-            suggestions: suggestions,
-            text: value,
-        });
-    };
+  render () {
+    console.log(this.state)
+    return(
+      <div>
+      <div>
+        <input
+          type='text'
+          placeholder='Enter city Name...'
+          onChange={this.handleInputChange}
+          onKeyPress={event => {
+            if(event.key === 'Enter') {
+              this.props.onSearch(this.state.searchText)
+            }
+          }}
+          //onKeyPress={this.handleKeyPressed}
+          value={this.state.searchText}
+          />
+      </div>
+          
 
-    selectedSuggestion(value) {
-        this.setState({
-            text: value,
-            suggestions: [],
-        });
-        Axios.get(`https://api.openaq.org/v1/latest`, {
-            params: {
-                country: 'GB',
-                location: value,
-            },
-        })
-          .then((response) => {
-            this.setState((prevState) => {
-                return {
-                    locationData: prevState.locationData.concat(response.data.results),
-                    text: '',
-               };
-            });
-        });
-    }
-
-
-
-    }
-
-   render () {
-       return(
-         <div>
-             <input 
-             className="search-form__input"
-             type='text'
-             placeholder='Enter city name...'
-             onChange={this.handleInputChange}
-             onKeyPress={event => {
-                 if(event.key === 'Enter') {
-                     this.props.onSearch(this.state.searchText)
-                 }
-             }}
-             value={this.state.searchText}
-             />
-         </div>  
-       )
-   } 
+      </div>
+    )
+  }
 }
 
 export default SearchBar;
