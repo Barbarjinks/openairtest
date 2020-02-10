@@ -8,6 +8,17 @@ import './Styles/app.css'
 
 class App extends Component {
 
+  constructor() 
+  {super()
+    this.state = {
+      CityNames: [],
+      suggestions: [],
+      text: '',
+      locationData: [], 
+    }
+  }
+
+
   render() {
     return (
       <React.Fragment>
