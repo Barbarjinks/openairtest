@@ -27,6 +27,21 @@ class Card extends React.Component {
         });
     };
 
+    getUpdate = () => {
+        const times = [];
+        this.props.values.map(update => {
+            const localTime = moment(update.lastUpdated).format('YYYY-MM-DD:HH:mm:ss Z');
+            const unix = moment(localTime).utc();
+            return times.push(unix);
+        });
+        const smallestTime = Math.min.apply(null, times);
+        const smallFormat = moment(smallestTime).format();
+        const time = moment(smallFormat).fromNow().toUpperCase();
+        return (
+          <p>UPDATED {time}</p>
+        );
+    };
+
 
     render() {
         return(
