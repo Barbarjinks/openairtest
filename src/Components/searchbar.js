@@ -96,7 +96,7 @@ class SearchBar extends React.Component {
         const { text } = this.state;
         return (
           <React.Fragment>
-            <div>
+            <div className="AutocompleteText">
               <div>
                 <input
                   className="inputfield fa"
