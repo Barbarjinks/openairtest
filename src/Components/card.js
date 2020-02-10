@@ -1,5 +1,7 @@
 import React from 'react';
 
+import moment from 'moment';
+
 class Card extends React.Component {
     constructor(props) {
         super(props);
@@ -46,10 +48,15 @@ class Card extends React.Component {
     render() {
         return(
             <React.Fragment>
-                 <div className="Card">
-                    <p><b>Values:  </b></p>{this.getValues()}
-                    </div>
-            </React.Fragment>
+            <div className="Card">
+              {<b>{this.getUpdate()}</b>}
+              <h1 className="cardtitle">{this.props.locationData.location}</h1>
+              <p>{`in ${this.props.locationData.city}, United kingdom`}</p>
+              <div className="valuesContainer">
+                <p><b>Values:  </b></p>{this.getValues()}
+              </div>
+            </div>
+          </React.Fragment>
         )
     }
 }
