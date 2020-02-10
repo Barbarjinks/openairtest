@@ -4,8 +4,10 @@ class Card extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state ()
-    };
+        this.state = {
+
+        };
+    }
 
     getValues = () => {
         return this.props.values.map(item => {

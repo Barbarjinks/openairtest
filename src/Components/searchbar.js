@@ -1,6 +1,8 @@
 import React from 'react';
 import Axios from 'axios';
 
+import Card from './card';
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -113,6 +115,11 @@ class SearchBar extends React.Component {
               {this.state.locationData ? this.state.locationData.map((data, index) => {
                 return (
                   <React.Fragment key={data.location}>
+                   <Card
+                   locationData={data}
+                   values={data.measurements}
+                   index={index}
+                   /> 
                   </React.Fragment>
                 );
               }) : null
