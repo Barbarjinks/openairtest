@@ -1,0 +1,12 @@
+.Card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    color: black;
+    flex-wrap: wrap;
+    text-align: left;
+    position: relative;
+    
+}

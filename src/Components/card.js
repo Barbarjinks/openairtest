@@ -2,6 +2,8 @@ import React from 'react';
 
 import moment from 'moment';
 
+import '../Styles/card.css';
+
 class Card extends React.Component {
     constructor(props) {
         super(props);
