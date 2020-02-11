@@ -101,14 +101,13 @@ class SearchBar extends React.Component {
             <div className="AutocompleteText">
               <div>
                 <input
-                  className="inputfield fa"
                   type="text"
                   onChange={this.onTextChanged}
                   value={text}
                   placeholder={'Enter city name...'}
                 />
                 {this.renderSuggestions()}
-                <span className="size" />
+                <span/>
               </div>
             </div>
             <div className="cards">

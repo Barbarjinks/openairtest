@@ -52,7 +52,7 @@ class Card extends React.Component {
             <React.Fragment>
             <div className="Card">
               {<b>{this.getUpdate()}</b>}
-              <h1 className="cardtitle">{this.props.locationData.location}</h1>
+              <h1 className="PlaceTitle">{this.props.locationData.location}</h1>
               <p>{`in ${this.props.locationData.city}, United kingdom`}</p>
               <div className="valuesContainer">
                 <p><b>Values:  </b></p>{this.getValues()}
