@@ -96,6 +96,13 @@ class SearchBar extends React.Component {
           </ul>
         );
       }
+
+      deleteCard = (index) => {
+        const array = [...this.state.locationData];
+        array.splice(index, 1);
+        return this.setState({ locationData: array});
+      };
+
       render() {
         const { text } = this.state;
         return (
@@ -122,6 +129,7 @@ class SearchBar extends React.Component {
                    locationData={data}
                    values={data.measurements}
                    index={index}
+                   deleteCard={this.deleteCard}
                    /> 
                   </React.Fragment>
                 );

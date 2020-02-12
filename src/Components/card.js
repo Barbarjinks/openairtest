@@ -3,6 +3,8 @@ import React from 'react';
 import moment from 'moment';
 
 import '../Styles/card.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 class Card extends React.Component {
     constructor(props) {
@@ -46,11 +48,18 @@ class Card extends React.Component {
         );
     };
 
+     deleteCard = () => {
+         this.props.deleteCard(this.props.index);
+     };
+
 
     render() {
         return(
             <React.Fragment>
             <div className="Card">
+                <div className="close">
+                    <FontAwesomeIcon onClick={this.deleteCard} icon={faTimes} />
+                </div>
               {<b>{this.getUpdate()}</b>}
               <h1 className="PlaceTitle">{this.props.locationData.location}</h1>
               <p>{`in ${this.props.locationData.city}, United kingdom`}</p>
