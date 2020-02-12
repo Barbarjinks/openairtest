@@ -4,6 +4,8 @@ import Axios from "axios";
 import Card from "./card";
 
 import "../Styles/searchbox.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -79,7 +81,6 @@ class SearchBar extends React.Component {
         {suggestions.map(item => (
           <li
             key={item}
-            className="dropdownItem"
             onKeyPress={event => {
               if (event.key === "Enter") {
                 this.suggestionSelected(item);
@@ -108,7 +109,8 @@ class SearchBar extends React.Component {
     return (
       <React.Fragment>
         <div className="autocomplete-text">
-          <div>
+          <div className="search-field">
+            <FontAwesomeIcon icon={faSearch} className="search-icon" />
             <input
               className="input"
               type="text"
@@ -121,7 +123,7 @@ class SearchBar extends React.Component {
             <span />
           </div>
         </div>
-        <div className="cards">
+        <div className="cards-wrapper">
           {this.state.locationData
             ? this.state.locationData.map((data, index) => {
                 return (

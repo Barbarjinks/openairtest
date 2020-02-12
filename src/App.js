@@ -9,7 +9,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      CityNames: [],
+      cityNames: [],
       suggestions: [],
       text: "",
       locationData: []
@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="display">
+      <div className="container">
         <Hero />
         <SearchBar />
       </div>

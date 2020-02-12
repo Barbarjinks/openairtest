@@ -1,0 +1,24 @@
+.heading {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.heading__title {
+  font-size: 28px;
+  margin: 0 0 20px;
+}
+
+.heading__copy {
+  font-size: 16px;
+  margin: 0 auto;
+}
+
+@media (min-width: 600px) {
+  .heading__title {
+    font-size: 50px;
+  }
+  .heading__copy {
+    font-size: 20px;
+    max-width: 500px;
+  }
+}
