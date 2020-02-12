@@ -7,69 +7,49 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons/faTimes";
 
 class Card extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
   getValues = () => {
     return this.props.values.map(item => {
-      const values = [];
-      values.push(
-        <React.Fragment key={item.parameter}>
-          <p>
-            {item.parameter}: {item.value},{" "}
-          </p>
-        </React.Fragment>
-      );
       return (
-        <React.Fragment key={item.parameter}>
-          <b>{values}</b>
-        </React.Fragment>
+        <p>
+          <strong>
+            {item.parameter}: {item.value},{" "}
+          </strong>
+        </p>
       );
     });
   };
 
-  getUpdate = () => {
-    const times = [];
-    this.props.values.map(update => {
-      const localTime = moment(update.lastUpdated).format(
-        "YYYY-MM-DD:HH:mm:ss Z"
-      );
-      const unix = moment(localTime).utc();
-      return times.push(unix);
-    });
-    const smallestTime = Math.min.apply(null, times);
-    const smallFormat = moment(smallestTime).format();
-    const time = moment(smallFormat)
+  getLastUpdatedText = () => {
+    const { values } = this.props;
+
+    const lastUpdatedTime = values[0].lastUpdated;
+    const lastUpdatedFormatted = moment(lastUpdatedTime)
       .fromNow()
       .toUpperCase();
-    return <p>UPDATED {time}</p>;
+
+    return <p>UPDATED {lastUpdatedFormatted}</p>;
   };
 
-  deleteCard = () => {
-    this.props.deleteCard(this.props.index);
+  onDeleteCard = () => {
+    this.props.onDeleteCard(this.props.index);
   };
 
   render() {
     return (
-      <React.Fragment>
-        <div className="Card">
-          <div className="close">
-            <FontAwesomeIcon onClick={this.deleteCard} icon={faTimes} />
-          </div>
-          {<b>{this.getUpdate()}</b>}
-          <h1 className="PlaceTitle">{this.props.locationData.location}</h1>
-          <p>{`in ${this.props.locationData.city}, United kingdom`}</p>
-          <div className="valuesContainer">
-            <p>
-              <b>Values: </b>
-            </p>
-            {this.getValues()}
-          </div>
+      <div className="card">
+        <div className="close">
+          <FontAwesomeIcon onClick={this.onDeleteCard} icon={faTimes} />
         </div>
-      </React.Fragment>
+        <strong>{this.getLastUpdatedText()}</strong>
+        <h1 className="place-title">{this.props.locationData.location}</h1>
+        <p>{`in ${this.props.locationData.city}, United kingdom`}</p>
+        <div className="values-container">
+          <p>
+            <b>Values: </b>
+          </p>
+          {this.getValues()}
+        </div>
+      </div>
     );
   }
 }

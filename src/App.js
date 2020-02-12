@@ -18,10 +18,10 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment className="display">
+      <div className="display">
         <Hero />
         <SearchBar />
-      </React.Fragment>
+      </div>
     );
   }
 }

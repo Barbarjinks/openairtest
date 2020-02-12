@@ -10,14 +10,14 @@ class SearchBar extends React.Component {
     super(props);
 
     this.state = {
-      CityNames: [],
+      cityNames: [],
       suggestions: [],
       text: "",
       locationData: []
     };
   }
 
-  UNSAFE_componentWillMount = () => {
+  componentDidMount() {
     Axios.get("https://api.openaq.org/v1/locations", {
       params: {
         country: "GB",
@@ -30,18 +30,18 @@ class SearchBar extends React.Component {
       });
 
       this.setState({
-        Cities: response.data.results,
-        CityNames: cityLocation
+        cities: response.data.results,
+        cityNames: cityLocation
       });
     });
-  };
+  }
 
   onTextChanged = event => {
     const value = event.target.value;
     let suggestions = [];
     if (value.length > 0) {
       const regex = new RegExp(`^${value}`, "i");
-      suggestions = this.state.CityNames.sort().filter(v => regex.test(v));
+      suggestions = this.state.cityNames.sort().filter(v => regex.test(v));
     }
     this.setState({
       suggestions: suggestions,
@@ -69,7 +69,7 @@ class SearchBar extends React.Component {
     });
   }
 
-  renderSuggestions() {
+  renderSuggestions = () => {
     const { suggestions } = this.state;
     if (suggestions.length === 0) {
       return null;
@@ -92,19 +92,22 @@ class SearchBar extends React.Component {
         ))}
       </ul>
     );
-  }
+  };
 
-  deleteCard = index => {
-    const array = [...this.state.locationData];
-    array.splice(index, 1);
-    return this.setState({ locationData: array });
+  handleDeleteCard = cardIndex => {
+    const { locationData } = this.state;
+
+    const newLocationData = locationData.filter(
+      (location, locationIndex) => locationIndex !== cardIndex
+    );
+    return this.setState({ locationData: newLocationData });
   };
 
   render() {
     const { text } = this.state;
     return (
       <React.Fragment>
-        <div className="AutocompleteText">
+        <div className="autocomplete-text">
           <div>
             <input
               className="input"
@@ -127,7 +130,7 @@ class SearchBar extends React.Component {
                       locationData={data}
                       values={data.measurements}
                       index={index}
-                      deleteCard={this.deleteCard}
+                      onDeleteCard={this.handleDeleteCard}
                     />
                   </React.Fragment>
                 );
