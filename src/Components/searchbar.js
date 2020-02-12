@@ -3,6 +3,8 @@ import Axios from 'axios';
 
 import Card from './card';
 
+import '../Styles/searchbox.css';
+
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -101,11 +103,13 @@ class SearchBar extends React.Component {
             <div className="AutocompleteText">
               <div>
                 <input
+                  className= "input"
                   type="text"
                   onChange={this.onTextChanged}
                   value={text}
                   placeholder={'Enter city name...'}
                 />
+                <span className="searchIcon"></span>
                 {this.renderSuggestions()}
                 <span/>
               </div>

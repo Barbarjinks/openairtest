@@ -1,0 +1,53 @@
+.AutocompleteText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 2em;
+}
+
+.input {
+    position: relative;
+    border: 2px solid grey;
+    height: 25px;
+    width: 190px;
+    border-radius: 5px;
+    padding-left: 31px;
+    padding-right: 11px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 13px;
+}
+
+.searchIcon {
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    background: transparent;
+    border: 3px solid;
+    left: 10px;
+    top: 8px;
+    border-radius: 100%;
+}
+
+.dropdown {
+    display: relative;
+    flex-direction: column;
+    max-width: 190px;
+    max-height: 235px;
+    background-color: white;
+    text-align: left;
+    list-style-type: none;
+    color: black;
+}
+
+.dropdown li {
+    padding: 10px 15px;
+    font-size: 13px;
+    z-index: 2;
+}
+
+.dropdown li:hover {
+    background-color: lightgray;
+    cursor: pointer;
+}

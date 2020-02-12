@@ -1,5 +1,7 @@
 import React from 'react';
 
+import '../Styles/hero.css';
+
 const Hero = (props) => (
     <section>
         <div className="heading">
