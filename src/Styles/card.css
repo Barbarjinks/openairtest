@@ -20,6 +20,10 @@
   margin: 15px 0;
 }
 
+.location-name {
+  color: #7836af;
+}
+
 .close {
   position: absolute;
   top: 15px;

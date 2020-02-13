@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import Hero from "./Components/hero";
-import SearchBar from "./Components/searchbar";
+import Hero from "./Components/Hero";
+import SearchBar from "./Components/SearchBar";
 
 import "./Styles/app.css";
 

@@ -1,9 +1,9 @@
 import React from "react";
 import Axios from "axios";
 
-import Card from "./card";
+import Card from "./Card";
 
-import "../Styles/searchbox.css";
+import "../Styles/search-bar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,7 +26,6 @@ class SearchBar extends React.Component {
         limit: 10000
       }
     }).then(response => {
-      console.log(response.data.results);
       const cityLocation = response.data.results.map(city => {
         return city.location;
       });
@@ -51,7 +50,7 @@ class SearchBar extends React.Component {
     });
   };
 
-  suggestionSelected(value) {
+  suggestionSelected = value => {
     this.setState({
       text: value,
       suggestions: []
@@ -69,7 +68,7 @@ class SearchBar extends React.Component {
         };
       });
     });
-  }
+  };
 
   renderSuggestions = () => {
     const { suggestions } = this.state;

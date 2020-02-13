@@ -41,7 +41,7 @@ class Card extends React.Component {
           <FontAwesomeIcon onClick={this.onDeleteCard} icon={faTimes} />
         </div>
         <strong>{this.getLastUpdatedText()}</strong>
-        <h1>{this.props.locationData.location}</h1>
+        <h2 className="location-name">{this.props.locationData.location}</h2>
         <p>{`in ${this.props.locationData.city}, United kingdom`}</p>
         <div className="values-container">
           <p>
